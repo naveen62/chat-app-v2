@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+    <div id="main-bg">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4 is-offset-4">
+                    <form action="/user/signup" method="post">
+                        <div id="form">
+                            <p class="is-size-3">Sign Up</p>
+                            <div class="field">
+                                <label class="lab">Email:</label>
+                                <div class="form-input">
+                                    <input type="email" class="input inside" placeholder="Enter email" name="email">
+                                </div>
+                                <label class="lab">Name:</label>
+                                <div class="form-input">
+                                    <input type="text" class="input inside" placeholder="Enter name" name="name">
+                                </div>
+                                <label class="lab">Password:</label>
+                                <div class="form-input">
+                                    <input type="password" class="input inside" placeholder="Enter password" name="password">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        <span>Keep me signd in</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="button is-primary">Sign In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../partials/header %>

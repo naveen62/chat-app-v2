@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/style/lib/bulma.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+    <nav class="navbar is-fixed-top" role="navigation">
+        <div class="navbar-brand">
+            <a class='navbar-item' href="/">Chat App</a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <% if(currentUser) { %>
+                <a href="/user/signup" class="navbar-item">Logout</a>                       
+                <% }else { %>
+                <a href="/user/signup" class="navbar-item">Sign Up</a>
+                <a href="/user/signin" class="navbar-item">Sign In</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
