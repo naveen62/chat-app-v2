@@ -3,9 +3,59 @@
         <div class="container">
             <div class="columns">
                 <div class="column">
-                        
+                    <p class="is-size-1" id="home-head">Welcome to Chat App</p>
+                    <label class="label">Search Gruops:</label>
+                    <input type="text" id="myInput" class="input inside" placeholder="Search for groups" onkeyup="myFunction()">
+                    <ul id="myUL">
+                        <% groups.forEach(function(group) { %>
+                            <li><a href="/join/<%=group._id%>"><%=group.name%></a></li>
+                        <% }) %>
+                      </ul>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4 is-offset-4">
+                    <form action="/group/new" method="post">
+                        <div id="home-form">
+                            <p class="is-size-3">Create Group</p>
+                            <div class="field">
+                                <label class="lab">Name:</label>
+                                <div class="form-input">
+                                    <input type="text" class="input inside" placeholder="Enter Group name" name="name">
+                                </div>
+                            </div>
+                            <button type="submit" class="button is-primary">Create group</button>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+            <div class="columns">
+                <div class="column is-4 is-offset-2">
+                    <nav class="panel pan">
+                        <p class="panel-heading">
+                            Created Groups
+                        </p>
+                        <% user.createdGroups.forEach(function(group) { %>
+                            <a href="#" class="panel-block">
+                                <%=group.name%>
+                            </a>
+                        <%})%>
+                    </nav>
+                </div>
+                <div class="column is-4">
+                    <nav class="panel pan">
+                        <p class="panel-heading">
+                            Joined Groups
+                        </p>
+                        <% user.joinedGroups.forEach(function(group) { %>
+                            <a href="#" class="panel-block">
+                                <%=group.name%>
+                            </a>
+                        <%})%>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
+    <script src="/js/home.js"></script>
     <% include ../partials/footer %>

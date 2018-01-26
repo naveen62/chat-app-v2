@@ -27,7 +27,7 @@ var groupSchema = new mongoose.Schema({
         }
     }],
     _createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: String,
     }
 })
+module.exports = mongoose.model('Group', groupSchema)

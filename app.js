@@ -25,15 +25,12 @@ app.use(session({
 }))
 // 
 // locals 
-app.use(function(req, res, next){
-    res.locals.currentUser = req.user;
-    next()
-})
 
 // config routes
 app.use(chat)
 app.use('/user', auth)
 // 
+
 // listen
 app.listen(3000, ()=> {
     console.log('started')

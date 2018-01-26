@@ -10,10 +10,10 @@ const {
 var User = require('../models/user');
 // routes
 router.get('/signin', (req, res) => {
-    res.render('auth/signIn')
+    res.render('auth/signIn', {currentUser: req.user})
 })
 router.get('/signup', (req, res) => {
-    res.render('auth/signUp');
+    res.render('auth/signUp', {currentUser: req.user});
 })
 router.post('/signup', (req, res) => {
     var body = _.pick(req.body, ['email', 'name', 'password'])
@@ -30,30 +30,28 @@ router.post('/signup', (req, res) => {
     })
 })
 router.post('/signin', (req, res) => {
-    let body = _.pick(req.body, ['email', 'password']);
-
+    var body = _.pick(req.body, ['email', 'password']);
+    var compare
     User.findOne({
         email: body.email
     }).then((user) => {
         if (!user) {
             return res.redirect('back');
         }
-        bcrypt.compare(body.password, user.password, (err, result) => {
-            if (!result) {
-                return res.redirect('back')
-            }
-        })
+        compare = bcrypt.compareSync(body.password, user.password);
+        if (!compare) {
+            return res.redirect('back')
+        }
         return user.genAuthToken().then((token) => {
             req.session.token = token;
             res.redirect('/')
         })
     }).catch((err) => {
         console.log(err)
-        res.redirect('/')
+        res.redirect('/signin')
     })
 })
 router.get('/logout', isAuth, (req, res) => {
-    console.log(req.token)
     User.findByIdAndUpdate(req.user._id, {
         $pull: {
             tokens: {

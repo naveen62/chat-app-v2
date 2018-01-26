@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
+var currentUser 
 
 var isAuth = (req, res, next) => {
     var decode

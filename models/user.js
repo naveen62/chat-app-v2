@@ -32,6 +32,14 @@ var userSchema = mongoose.Schema({
             type: String,
             required: true
         }
+    }],
+    joinedGroups: [{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'Group'
+    }],
+    createdGroups: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group'
     }]
 
 })
