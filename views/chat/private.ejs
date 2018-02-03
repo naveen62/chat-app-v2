@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+<div class="columns">
+    <div class="column">
+        <ul id="pri-messages">
+            <% chat.chats.forEach(function(chat) { %>
+                <li>
+                        <div>
+                            <span class="is-size-5 has-text-weight-semibold"><%=chat.from%></span>
+                            <span><%=chat.created%></span>
+                        </div>
+                        <div>
+                            <p><%=chat.text%></p>
+                        </div>
+                    </li>                
+            <% }) %>
+        </ul>
+    </div>
+</div>
+<span id="pri-id"><%=chatId%></span>
+<span id="pri-user"><%=user%></span>
+<div id="pri-message">
+    <p id="type">Typing...</p>
+    <div id="msg-bar">
+        <input type="text" class="input" id="pri-msg" autofocus autocomplete="off" placeholder="Enter Message">
+        <button class="button" id="pri-but1">Send</button>
+        <button class="button" id="pri-but2">Send location</button>
+    </div>
+</div>
+<script id="message-template" type="text/template">
+     <li>
+                <div>
+                    <span class="is-size-5 has-text-weight-semibold">{{from}}</span>
+                    <span>{{created}}</span>
+                </div>
+                <div>
+                    <p>{{text}}</p>
+                </div>
+            </li>
+</script>
+<script src="/socket.io/socket.io.js"></script>
+    <script src="/js/lib/jquery.js"></script>
+    <script src="/js/lib/moment.js"></script>
+    <script src="/js/lib/mustache.js"></script>
+    <script src="/js/private-chat.js"></script>
+<% include ../partials/footer %>

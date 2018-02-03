@@ -37,12 +37,11 @@ var userSchema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref: 'Group'
     }],
-    createdGroups: [{
+    chats: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Group'
+        ref: 'Chat'
     }]
-
-})
+})  
 userSchema.pre('save', function (next) {
     var user = this;
     if(user.isModified('password')) {

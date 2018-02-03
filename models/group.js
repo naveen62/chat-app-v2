@@ -13,15 +13,15 @@ var groupSchema = new mongoose.Schema({
         ref: 'User'
     }],
     chats: [{
-        user: {
+        from: {
             type: String,
             required: true
         },
-        message: {
+        text: {
             type: String,
             required: true
         },
-        time: {
+        created: {
             type: String,
             required: true
         }

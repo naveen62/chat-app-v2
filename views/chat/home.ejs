@@ -8,9 +8,26 @@
                     <input type="text" id="myInput" class="input inside" placeholder="Search for groups" onkeyup="myFunction()">
                     <ul id="myUL">
                         <% groups.forEach(function(group) { %>
-                            <li><a href="/join/<%=group._id%>"><%=group.name%></a></li>
-                        <% }) %>
-                      </ul>
+                            <li>
+                                <a href="/join/<%=group._id%>">
+                                    <%=group.name%>
+                                </a>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <label class="label">Search friends by email:</label>
+                    <input type="text" id="myInput1" class="input inside" placeholder="Search friends by email" onkeyup="myFunction1()">
+                    <ul id="myUL1">
+                        <% users.forEach(function(user) { %>
+                                <% if(currentUser.email != user.email) { %>
+                                    <li>
+                                        <a href="/add/<%=user._id%>">
+                                    <%=user.email%>
+                                        </a>
+                                        </li>
+                                        <% } %>
+                            <% }) %>
+                    </ul>
                 </div>
             </div>
             <div class="columns">
@@ -28,30 +45,34 @@
                         </div>
                     </form>
                 </div>
-            </div>  
+            </div>
             <div class="columns">
-                <div class="column is-4 is-offset-2">
-                    <nav class="panel pan">
-                        <p class="panel-heading">
-                            Created Groups
-                        </p>
-                        <% user.createdGroups.forEach(function(group) { %>
-                            <a href="#" class="panel-block">
-                                <%=group.name%>
-                            </a>
-                        <%})%>
-                    </nav>
-                </div>
-                <div class="column is-4">
+                <div class="column is-4 is-offset-1">
                     <nav class="panel pan">
                         <p class="panel-heading">
                             Joined Groups
                         </p>
                         <% user.joinedGroups.forEach(function(group) { %>
-                            <a href="#" class="panel-block">
+                            <a href="/chat/<%=group._id%>" class="panel-block">
                                 <%=group.name%>
                             </a>
-                        <%})%>
+                            <%})%>
+                    </nav>
+                </div>
+                <div class="column is-4 is-offset-2">
+                    <nav class="panel pan">
+                        <p class="panel-heading">
+                            Chats
+                        </p>
+                        <% user.chats.forEach(function(chat) { %>
+                           <% chat.friends.forEach(function(friend) { %>
+                               <% if(friend != currentUser.email) { %>
+                                    <a href="/private/chat/<%=chat._id%>" class="panel-block">
+                                        <%=friend%>
+                                    </a>
+                               <% } %>
+                          <% }) %>   
+                       <% }) %>
                     </nav>
                 </div>
             </div>
