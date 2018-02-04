@@ -240,7 +240,7 @@ div#navMenu.navbar-menu.is-active {
     }
     #pri-messages {
         margin-left: 2%;
-        padding-bottom: 27%;
+        padding-bottom: 31%;
     }
     #main-chat-bg {
         height: 100%;
@@ -266,5 +266,8 @@ div#navMenu.navbar-menu.is-active {
     #but2 {
         width: 100%;
         margin-top: 3px;
+    }
+    #type {
+        margin-left: 2.3%;
     }
 }
