@@ -52,6 +52,17 @@
             </div>
         </li>
     </script>
+    <script id="message-location" type="text/template">
+        <li>
+                   <div>
+                       <span class="is-size-5 has-text-weight-semibold">{{from}}</span>
+                       <span>{{created}}</span>
+                   </div>
+                   <div>
+                       <p><a target="_blank" href="https://www.google.com/maps?q={{latitude}},{{longitude}}">My current location</a></p>
+                   </div>
+               </li>
+    </script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/lib/moment.js"></script>
     <script src="/js/lib/mustache.js"></script>

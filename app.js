@@ -69,6 +69,9 @@ op.on('connection', (socket) => {
             op.to(msg.groupName).emit('newMsg', genMsg(msg.from, msg.text))
         })
     })
+    socket.on('createLocation', (loc) => {
+        socket.emit('newLocation', genLocation(loc.user, loc.latitude, loc.longitude))
+    })
     socket.on('disconnect', () => {
         var removeUser = user.removeUser(socket.id);
         socket.broadcast.to(removeUser.group).emit('newMsg', genMsg(`${removeUser.group} group`, `${removeUser.name} has disconnected from group`))
