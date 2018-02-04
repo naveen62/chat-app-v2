@@ -85,6 +85,9 @@ socket.on('pri-newLocation', function(loc) {
     ul.append(html)
     scrollToButtom();
 })
+msg.on('click', function() {
+    scrollToButtom()
+})
 var locationButton = document.querySelector('#pri-but2')
 locationButton.addEventListener('click', function() {
     if(!navigator.geolocation) {

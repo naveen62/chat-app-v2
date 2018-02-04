@@ -80,6 +80,9 @@ socket.on('updateList', function(users) {
     menu.html(list)
     menu.prepend(label)
 })
+msg.on('click', function() {
+    scrollToButtom()
+})
 var locationButton = document.querySelector('#but2');
 locationButton.addEventListener('click', function() {
     if(!navigator.geolocation) {
