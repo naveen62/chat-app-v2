@@ -1,6 +1,4 @@
 <% include ../partials/header %>
-<div class="columns">
-    <div class="column">
         <ul id="pri-messages">
             <% chat.chats.forEach(function(chat) { %>
                 <li>
@@ -14,8 +12,6 @@
                     </li>                
             <% }) %>
         </ul>
-    </div>
-</div>
 <span id="pri-id"><%=chatId%></span>
 <span id="pri-user"><%=user%></span>
 <div id="pri-message">
@@ -49,7 +45,6 @@
            </li>
 </script>
 <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/lib/jquery.js"></script>
     <script src="/js/lib/moment.js"></script>
     <script src="/js/lib/mustache.js"></script>
     <script src="/js/private-chat.js"></script>

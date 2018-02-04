@@ -160,7 +160,7 @@ a {
     width: 100vw;
 }
 #pri-messages {
-    padding-bottom: 33px;
+    padding-bottom: 55px;
 }
 #pri-msg {
     width: 84%;
@@ -215,6 +215,14 @@ a {
     color: white;
     font-size: medium
 }
+button.button.navbar-burger {
+    color: white;
+    background-color: #143C5C;
+    border: none
+}
+div#navMenu.navbar-menu.is-active {
+    background-color: #143C5C;
+}
 @media only screen and (max-width: 500px) {
     .container {
         padding-left: 10px;
@@ -231,10 +239,12 @@ a {
         width: 21%;
     }
     #pri-messages {
-        padding-bottom: 24%;
+        margin-left: 2%;
+        padding-bottom: 27%;
     }
     #main-chat-bg {
-        height: 100%;;
+        height: 100%;
+        padding-bottom: 5%;
     }
     .menu {
         display: none;
@@ -244,7 +254,7 @@ a {
         width: 100%;
     }
     #messages {
-        margin-left: 0%;
+        margin-left: 2%;
         padding-bottom: 30%;
     }
     #msg {

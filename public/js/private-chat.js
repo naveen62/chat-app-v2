@@ -6,6 +6,7 @@ var getUser = document.querySelector('#pri-user').textContent;
 var user = JSON.parse(getUser);
 var ul = $('#pri-messages')
 
+scrollToButtom()
 function emit() {
     if(msg.val().length == 0) {
         alert('Please enter message')

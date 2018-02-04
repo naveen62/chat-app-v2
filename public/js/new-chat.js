@@ -6,6 +6,7 @@ var geTdata = document.querySelector('#data').textContent;
 var data = JSON.parse(geTdata);
 var geTuser = document.querySelector('#user').textContent;
 var user = JSON.parse(geTuser)
+scrollToButtom();
 
 function scrollToButtom() {
     window.scrollTo(0, document.querySelector('#messages').scrollHeight)
