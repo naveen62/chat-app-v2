@@ -120,10 +120,11 @@
     display: none;
 }
 .menu {
+    padding-top: 2%;
     position: fixed;
     z-index: 3;
     background-color: rgba(20, 112, 251, 0.767);
-    height: 91.8vh;
+    height: 93.8vh;
     width: 20%;
 }
 .menu-list a {
@@ -138,7 +139,7 @@ a {
     cursor: context-menu;
 }
 #msg {
-    width: 81%;
+    width: 80%;
 }
 #msg:focus {
     box-shadow: none;
@@ -158,8 +159,11 @@ a {
     bottom: 0px;
     width: 100vw;
 }
+#pri-messages {
+    padding-bottom: 33px;
+}
 #pri-msg {
-    width: 85%;
+    width: 84%;
 
 }
 #pri-id {
@@ -184,10 +188,16 @@ a {
     transition: all 1s;
 }
 #but1 {
-    background-color:  rgba(20, 112, 251, 0.767)
+    background-color:  rgba(20, 112, 251, 0.767);
 }
 #but2 {
-    background-color:  rgba(20, 112, 251, 0.767)        
+    background-color:  rgba(20, 112, 251, 0.767);        
+}
+#pri-but1 {
+    background-color:  rgba(20, 112, 251, 0.767);
+}
+#pri-but2 {
+    background-color:  rgba(20, 112, 251, 0.767);
 }
 #messages {
     position: absolute;
@@ -197,7 +207,7 @@ a {
     margin-top: 3.8%;
     margin-left: 21%;
     width: 100vw;
-    padding-bottom: 5%;
+    padding-bottom: 4.5%;
 }
 
 .menu-label {
@@ -208,6 +218,43 @@ a {
 @media only screen and (max-width: 500px) {
     .container {
         padding-left: 10px;
-        padding-right: 30px;
+        padding-right: 10px;
+    }
+    #pri-msg {
+        width: 77%;
+    }
+    #pri-but2 {
+        width: 100%;
+        margin-top: 5px;
+    }
+    #pri-but1 {
+        width: 21%;
+    }
+    #pri-messages {
+        padding-bottom: 24%;
+    }
+    #main-chat-bg {
+        height: 100%;;
+    }
+    .menu {
+        display: none;
+    }
+    #message {
+        margin-left: 0%;
+        width: 100%;
+    }
+    #messages {
+        margin-left: 0%;
+        padding-bottom: 30%;
+    }
+    #msg {
+     width: 77%;   
+    }
+    #but1 {
+        width: 21%;
+    }
+    #but2 {
+        width: 100%;
+        margin-top: 3px;
     }
 }

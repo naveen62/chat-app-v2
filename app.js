@@ -1,10 +1,11 @@
+require('./config/config');
 const express = require('express');
 const app = express();
 const http = require('http')
+const port = process.env.PORT
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
 const socketIO = require('socket.io');
 const server = http.createServer(app)
 var io = socketIO(server)
@@ -18,6 +19,7 @@ const Chat = require('./models/private');
 const {auth} = require('./routes/auth')
 var {User} = require('./utils/user');
 var {genMsg} = require('./middleware/genMsg');
+var {genLocation} = require('./middleware/genLocation');
 const chat = require('./routes/chat');
 
 // config
@@ -26,7 +28,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.set('view engine', 'ejs')
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://127.0.0.1/Chat-App');
+mongoose.connect(process.env.MONGODB_URL);
 var db = mongoose.connection;
 db.once('open', () => {
     console.log('connected')
@@ -35,7 +37,6 @@ app.use(session({
     secret: 'sessions sec',
     resave: false,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 // 
 // locals 
@@ -46,8 +47,7 @@ app.use('/user', auth)
 // 
 var user = new User()
 op.on('connection', (socket) => {
-    console.log('new user connected')
-
+    
     socket.on('join', (params) => {
         socket.join(params.group);
         user.removeUser(socket.id);
@@ -76,8 +76,7 @@ op.on('connection', (socket) => {
     })
 })
 pri.on('connection', (socket) => {
-    console.log('User connected to client private')
-
+    
     socket.on('pri-join', (join) => {
         socket.join(join.joinId)
     })
@@ -100,11 +99,14 @@ pri.on('connection', (socket) => {
             socket.broadcast.to(typing.joinId).emit('type-show', {unshow: false})
         }
     })
+    socket.on('pri-createLocation', (coords) => {
+        pri.to(coords.id).emit('pri-newLocation', genLocation(coords.user, coords.latitude, coords.longitude))
+    })
     socket.on('disconnect', () => {
         console.log('disconnected from private')
     })
 })
 // listen
-server.listen(3000, ()=> {
+server.listen(port, ()=> {
     console.log('started')
 })

@@ -31,6 +31,9 @@ $('#pri-but1').on('click', function() {
     emit()
 })
 msg.keydown(function(event) {
+    if(event.which === 9) {
+        return
+    }
     if(event.which === 13) {
         emit()
     } else {
@@ -68,4 +71,39 @@ socket.on('pri-createMsg', function(msg) {
     })
     ul.append(html)
     scrollToButtom()
+})
+socket.on('pri-newLocation', function(loc) {
+    console.log(loc)
+    var template = $('#message-location').html()
+    var html = Mustache.render(template, {
+        from: loc.from,
+        latitude: loc.latitude,
+        longitude: loc.longitude,
+        created: loc.created
+    })
+    ul.append(html)
+    scrollToButtom();
+})
+var locationButton = document.querySelector('#pri-but2')
+locationButton.addEventListener('click', function() {
+    if(!navigator.geolocation) {
+        return alert('geolocation not supported');
+    }
+    locationButton.setAttribute('disabled', 'disabled');
+    locationButton.textContent = 'Sending...';
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        locationButton.removeAttribute('disabled')
+        locationButton.textContent = 'Send location';
+        socket.emit('pri-createLocation', {
+            id: Id,
+            user: user.name,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        })
+    }, function() {
+        locationButton.removeAttribute('disabled')
+        locationButton.textContent = 'Send location';
+        alert('Unable to fetch location');
+    })
 })
