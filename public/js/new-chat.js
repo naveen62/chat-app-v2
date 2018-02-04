@@ -81,7 +81,9 @@ socket.on('updateList', function(users) {
     menu.prepend(label)
 })
 msg.on('click', function() {
-    scrollToButtom()
+    setTimeout(() => {
+        scrollToButtom()
+    }, 1000);
 })
 var locationButton = document.querySelector('#but2');
 locationButton.addEventListener('click', function() {

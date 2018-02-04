@@ -86,7 +86,9 @@ socket.on('pri-newLocation', function(loc) {
     scrollToButtom();
 })
 msg.on('click', function() {
-    scrollToButtom()
+    setTimeout(() => {
+        scrollToButtom()
+    }, 1000);
 })
 var locationButton = document.querySelector('#pri-but2')
 locationButton.addEventListener('click', function() {
